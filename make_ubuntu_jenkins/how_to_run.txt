@@ -1,0 +1,25 @@
+cd ~/Course/terraform/Lesson8
+terraform init
+terraform plan
+terraform apply # run main.tf with jenkinsInstall.sh
+ssh -i ~/Course/secret/aws_key ubuntu@3.122.97.190 # link to instance (3.122.97.190 = IPv4 Public IP of new instance)
+
+on the new instance may look at logs to see how user-data complited
+cat /var/log/cloud-init-output.log
+
+in the browser
+3.122.97.190:8080
+if jenkins successfully installed you can see:
+Пожалуйста, подождите. Jenkins готовится к работе ...
+then information about Unlock Jenkins
+    /var/lib/jenkins/secrets/initialAdminPassword
+
+to see this password
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+put the shown password to row in the browser
+
+remember!!!! destroy all new resources
+terraform destroy
+or manually terminate instances and delete new secure groups
+https://eu-central-1.console.aws.amazon.com/ec2/v2/home?region=eu-central-1#Instances:sort=desc:instanceId
